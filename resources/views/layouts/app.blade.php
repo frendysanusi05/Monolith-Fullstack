@@ -71,10 +71,13 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+    
+        <div class="no-body-clear d-flex flex-column flex-root">
+            <div class="d-flex flex-row flex-column-fluid">
+                @include('layouts.base.aside')
+                @yield('content')
+            </div>
+        </div>
     </div>
 </body>
 </html>

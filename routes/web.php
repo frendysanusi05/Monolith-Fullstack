@@ -21,4 +21,20 @@ Route::redirect('/', '/login');
 
 Auth::routes();
 
+Route::middleware('auth')
+    ->group(
+        // function() {
+        //     Route::namespace('Home')
+        //         ->group(
+                    function() {
+                        Route::get('home', 'App\Http\Controllers\HomeController@index')->name('home');
+                    }
+        //         )
+        // }
+        );
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
