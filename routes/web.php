@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KatalogBarang\KatalogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,18 +25,17 @@ Auth::routes();
 
 Route::middleware('auth')
     ->group(
-        // function() {
-        //     Route::namespace('Home')
-        //         ->group(
+        function() {
+            Route::get('home', [HomeController::class, 'index'])->name('home');
+
+            Route::namespace('KatalogBarang')
+                ->group(
                     function() {
-                        Route::get('home', 'App\Http\Controllers\HomeController@index')->name('home');
+                        Route::get('/katalog', [KatalogController::class, 'index'])->name('katalog');
+                        Route::get('/katalog-detail/{id}', [KatalogController::class, 'detail'])->name('katalog.detail');
+                        Route::get('/get-barang', [KatalogController::class, 'getBarang'])->name('katalog.getBarang');
+                        Route::get('/get-detail-barang/{id}', [KatalogController::class, 'getDetailBarang'])->name('katalog.getDetailBarang');
                     }
-        //         )
-        // }
+                );
+            }
         );
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

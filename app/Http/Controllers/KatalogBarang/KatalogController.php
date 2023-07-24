@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Http\Controllers\KatalogBarang;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Http;
+use App\Models\User;
+use DataTables;
+
+class KatalogController extends Controller
+{
+    public function index(Request $request) {
+        return view('katalog-barang.index');
+    }
+
+    public function detail(Request $request, $id) {
+        return view('katalog-barang.detail', compact('id'));
+    }
+
+    public function getBarang(Request $request) {
+        if ($request->ajax()) {
+            $response = Http::get('http://localhost:8080/barang');
+            $response = $response->json();
+            $response = $response['data'];
+            return DataTables::of($response)
+                ->addIndexColumn()
+                ->make(true);
+        }
+    }
+
+    public function getDetailBarang(Request $request, $id) {
+        if ($request->ajax()) {
+            $response = Http::get('http://localhost:8080/barang');
+            $response = $response->json();
+            $response = $response['data'];
+            $data = collect($response)->where('id', $id)->values()->all();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+    }
+}
