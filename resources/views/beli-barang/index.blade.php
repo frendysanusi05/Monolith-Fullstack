@@ -14,6 +14,7 @@
                         <th>ID Perusahaan</th>
                         <th>Jumlah</th>
                         <th>Total Harga</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,7 +27,7 @@
 
 <script>
     $(document).ready(function() {
-        $('.data-table').DataTable({
+        var table = $('.data-table').DataTable({
             processing:true,
             serverSide:true,
             ajax:"{{ route('beli.getIdentitasBarang', $id) }}",
@@ -37,12 +38,21 @@
                 {data:'kode', name:'kode'},
                 {data:'perusahaan_id', nama:'perusahaan_id'},
                 {data:'jumlah', nama:'jumlah'},
-                {data:'total', nama:'total'}           
+                {data:'total', nama:'total'},
+                {
+                    data: 'id',
+                    name: 'action',
+                    render: function(data, type, row) {
+                        var jumlah = !isNaN(row.jumlah) ? row.jumlah : 1;
+                        var edit_btn = '<a href="/beli/' + data + '" class="edit btn btn-primary btn-sm">Edit</a>';
+                        var buy_btn = '<a href="/transaksi/' + data + '/' + jumlah + '" class="edit btn btn-danger btn-sm">Buy</a>';
+                        return edit_btn + ' ' + buy_btn;
+                    }
+                }       
             ],
         });
 
         $(document).on('change', '#item-jumlah', function() {
-            console.log("TES");
             var rowIndex = $(this).closest('tr').index();
             var rowData = table.row(rowIndex).data();
             var harga = rowData.harga;
@@ -50,7 +60,7 @@
             rowData.jumlah = jumlah;
             var total = harga * jumlah;
             rowData.total = total;
-            table.row(rowIndex).data(rowData).draw(false);
+            table.row(rowIndex).data(rowData);
         });
     });
 </script>

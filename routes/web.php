@@ -45,6 +45,7 @@ Route::middleware('auth')
                     function() {
                         Route::get('/beli/{id}', [BeliController::class, 'index'])->name('beli');
                         Route::get('/get-identitas-barang/{id}', [BeliController::class, 'getIdentitasBarang'])->name('beli.getIdentitasBarang');
+                        Route::get('/transaksi/{id}/{jumlah}', [BeliController::class, 'transaction'])->name('beli.transaction');
                     }
                 );
 

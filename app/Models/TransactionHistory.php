@@ -18,6 +18,6 @@ class TransactionHistory extends Model
         'item_name',
         'amount',
         'total_price',
-        'buyes_id',
+        'buyers_id',
     ];
 }
