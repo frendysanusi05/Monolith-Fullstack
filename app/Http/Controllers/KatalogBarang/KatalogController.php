@@ -4,9 +4,7 @@ namespace App\Http\Controllers\KatalogBarang;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
-use App\Models\User;
 use DataTables;
 
 class KatalogController extends Controller
@@ -21,7 +19,7 @@ class KatalogController extends Controller
 
     public function getBarang(Request $request) {
         if ($request->ajax()) {
-            $response = Http::get('http://localhost:8080/barang');
+            $response = Http::get(env('SINGLE_SERVICE_API_URL'));
             $response = $response->json();
             $response = $response['data'];
             return DataTables::of($response)
@@ -32,7 +30,7 @@ class KatalogController extends Controller
 
     public function getDetailBarang(Request $request, $id) {
         if ($request->ajax()) {
-            $response = Http::get('http://localhost:8080/barang');
+            $response = Http::get(env('SINGLE_SERVICE_API_URL'));
             $response = $response->json();
             $response = $response['data'];
             $data = collect($response)->where('id', $id)->values()->all();

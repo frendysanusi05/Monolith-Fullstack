@@ -10,6 +10,7 @@
                         <th>Nama</th>
                         <th>Harga</th>
                         <th>Stok</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,7 +30,16 @@
             columns:[
                 {data:'nama', name:'nama'},
                 {data:'harga', name:'harga'},
-                {data:'stok', name:'stok'}
+                {data:'stok', name:'stok'},
+                {
+                    data: 'id',
+                    name: 'action',
+                    render: function(data) {
+                        var url = '/beli/' + data;
+                        var btn = '<a href="' + url + '" class="edit btn btn-primary btn-sm">Buy</a>';
+                        return btn;
+                    }
+                }
             ]
         });
     });

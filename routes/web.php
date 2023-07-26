@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KatalogBarang\KatalogController;
+use App\Http\Controllers\BeliBarang\BeliController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,14 @@ Route::middleware('auth')
                         Route::get('/katalog-detail/{id}', [KatalogController::class, 'detail'])->name('katalog.detail');
                         Route::get('/get-barang', [KatalogController::class, 'getBarang'])->name('katalog.getBarang');
                         Route::get('/get-detail-barang/{id}', [KatalogController::class, 'getDetailBarang'])->name('katalog.getDetailBarang');
+                    }
+                );
+
+            Route::namespace('BeliBarang')
+                ->group(
+                    function() {
+                        Route::get('/beli/{id}', [BeliController::class, 'index'])->name('beli');
+                        Route::get('/get-identitas-barang/{id}', [BeliController::class, 'getIdentitasBarang'])->name('beli.getIdentitasBarang');
                     }
                 );
             }

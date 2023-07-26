@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class LoginController extends Controller
 {
@@ -67,5 +69,28 @@ class LoginController extends Controller
     public function username()
     {
         return $this->username;
+    }
+
+    /**
+     * The user has been authenticated.
+     *
+     * @return mixed
+     */
+    public function authenticated()
+    {
+        $credentials = request()->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        try {
+            if (!$token = JWTAuth::attempt($credentials)) {
+                return response()->json(['error' => 'Invalid credentials'], 401);
+            }
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'Could not create token'], 500);
+        }
+        
+        return redirect(route("home"))->withCookie("jwt_token", $token, auth('api')->factory()->getTTL() * 60, "/")->with("success", "User logged in successfully");
     }
 }
