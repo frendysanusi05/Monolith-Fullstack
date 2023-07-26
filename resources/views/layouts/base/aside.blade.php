@@ -7,7 +7,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-dark px-0 align-middle">
+                <a href="/riwayat" class="nav-link text-dark px-0 align-middle">
                     <i class="fs-4 bi-clock-history"></i> <span class="ms-1 d-none d-sm-inline">Riwayat Pembelian</span> </a>
             </li>
         </ul>

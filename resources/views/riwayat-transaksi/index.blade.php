@@ -8,8 +8,9 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Nama</th>
-                        <th>Action</th>
+                        <th>Nama Barang</th>
+                        <th>Jumlah</th>
+                        <th>Total Harga</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,19 +26,12 @@
         $('.data-table').DataTable({
             processing:true,
             serverSide:true,
-            ajax:"{{ route('katalog.getBarang') }}",
+            ajax:"{{ route('riwayat.getRiwayat', $id) }}",
             columns:[
                 {data:'DT_RowIndex', name:'DT_RowIndex', searchable: false, orderable: false},
-                {data:'nama', name:'nama'},
-                {
-                    data: 'id',
-                    name: 'action',
-                    render: function(data) {
-                        var url = '/katalog-detail/' + data;
-                        var btn = '<a href="' + url + '" class="edit btn btn-primary btn-sm">Detail</a>';
-                        return btn;
-                    }
-                }
+                {data:'item_name', name:'item_name'},
+                {data:'amount', name:'amount'},
+                {data:'total_price', name:'total_price'}
             ]
         });
     });

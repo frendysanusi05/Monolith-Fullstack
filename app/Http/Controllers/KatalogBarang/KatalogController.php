@@ -19,7 +19,7 @@ class KatalogController extends Controller
 
     public function getBarang(Request $request) {
         if ($request->ajax()) {
-            $response = Http::get(env('SINGLE_SERVICE_API_URL'));
+            $response = Http::get(env('SINGLE_SERVICE_API_URL') . "barang");
             $response = $response->json();
             $response = $response['data'];
             return DataTables::of($response)
@@ -30,7 +30,7 @@ class KatalogController extends Controller
 
     public function getDetailBarang(Request $request, $id) {
         if ($request->ajax()) {
-            $response = Http::get(env('SINGLE_SERVICE_API_URL'));
+            $response = Http::get(env('SINGLE_SERVICE_API_URL') . "barang");
             $response = $response->json();
             $response = $response['data'];
             $data = collect($response)->where('id', $id)->values()->all();

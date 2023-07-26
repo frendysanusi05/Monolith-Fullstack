@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KatalogBarang\KatalogController;
 use App\Http\Controllers\BeliBarang\BeliController;
+use App\Http\Controllers\RiwayatTransaksi\RiwayatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,14 @@ Route::middleware('auth')
                     function() {
                         Route::get('/beli/{id}', [BeliController::class, 'index'])->name('beli');
                         Route::get('/get-identitas-barang/{id}', [BeliController::class, 'getIdentitasBarang'])->name('beli.getIdentitasBarang');
+                    }
+                );
+
+            Route::namespace('RiwayatTransaksi')
+                ->group(
+                    function() {
+                        Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat');
+                        Route::get('/get-riwayat/{id}', [RiwayatController::class, 'getRiwayat'])->name('riwayat.getRiwayat');
                     }
                 );
             }
