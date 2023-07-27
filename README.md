@@ -1,66 +1,95 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Monolith
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+## Description
+Monolith merupakan sebuah aplikasi yang digunakan untuk transaksi jual beli. Singkatnya, Monolith adalah aplikasi e-commerce. Data-data produk diambil melalui [Single Service](https://github.com/frendysanusi05/SingleService-Backend)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## List of Contents
+1. [Description](#description)
+2. [Tech Stack](#tech-stack)
+3. [Design Patterns](#design-patterns)
+4. [How to Run](#how-to-run)
+5. [API Endpoints](#api-endpoints)
+6. [Bonuses](#bonuses)
+7. [Made with Love by](#made-with-love-by)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## Tech Stack
+### Tech
+* PHP v8.2.4
+* Laravel v10.15.0          => framework PHP
+* Docker-compose v2.19.1    => container
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Database
+* MySQL v8.0.34
+* DBeaver        => DBMS Tools
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Design Patterns
+1. Chain of Responsibility
+Digunakan untuk menghubungkan berbagai objek dalam sebuah rantai sehingga dapat dilakukan penanganan request secara terurut. Alur perjalanan request adalah Middleware -> Routes -> Controllers -> Models -> Views -> Databases
 
-## Laravel Sponsors
+2. MVC (Model-View-Controller)
+Diimplementasikan oleh struktur MVC (Model-View-Controller) sehingga setiap directory memiliki fungsinya masing-masing dan mudah dilakukan maintenance
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+3. Decorator
+Diimplementasikan oleh directory middleware untuk menghindari penulisan kode berulang saat mengecek autentikasi, melakukan enkripsi cookie, maupun mengeset header di setiap page
 
-### Premium Partners
+4. Facades
+Digunakan pada setiap file yang memerlukan akses ke directory lain sehingga memudahkan penghafalan sintaks tanpa harus mengingat sintaks aslinya
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
 
-## Contributing
+## How to Run
+1. Clone repository ini
+2. Masuk ke directory 
+``` cd /Monolith-Fullstack ```
+3. Buat file .env dengan command berikut
+* Windows
+``` copy .env.example .env ```
+* Linux
+``` cp .env.example .env ```
+4. Jika menggunakan Docker Desktop, jalankan aplikasi tersebut terlebih dahulu
+5. Pada terminal/cmd, jalankan command makefile berikut.
+``` make setup ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+## API Endpoints
+### User Endpoints
+| No | HTTP Method  | Endpoints                  | Access    |
+| -- | ------------ | -------------------------- | --------- |
+| 1  | POST         | /login                     | All       |
+| 2  | POST         | /register                  | All       |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Katalog Barang Endpoints
+| No | HTTP Method  | Endpoints                  | Access    |
+| -- | ------------ | -------------------------- | --------- |
+| 1  | GET          | /katalog                   | User      |
+| 2  | GET          | /katalog-detail/:id        | User      |
+| 3  | GET          | /get-barang                | User      |
+| 4  | GET          | /get-detail-barang/:id     | User      |
 
-## Security Vulnerabilities
+### Beli Barang Endpoints
+| No | HTTP Method  | Endpoints                  | Access    |
+| -- | ------------ | -------------------------- | --------- |
+| 1  | GET          | /beli/:id                  | User      |
+| 2  | GET          | /get-identitas-barang/:id  | User      |
+| 3  | GET          | /transaksi/:id/"jumlah     | User      |
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Riwayat Transaksi Endpoints
+| No | HTTP Method  | Endpoints                  | Access    |
+| -- | ------------ | -------------------------- | --------- |
+| 1  | GET          | /riwayat                   | User      |
+| 2  | GET          | /get-riwayat/:id           | User      |
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Bonuses
+OTW ^
+
+
+## Made with Love by
+Frendy Sanusi - 18221041
+
+Sistem dan Teknologi Informasi
+
+Institut Teknologi Bandung
