@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use DataTables;
 use GuzzleHttp\Client;
+use \Firebase\JWT\JWT;
+use Carbon\Carbon;
 
 class BeliController extends Controller
 {
@@ -61,26 +63,31 @@ class BeliController extends Controller
         $total = $jumlah * $harga;
 
         if ($stok - $jumlah < 0) {
-            return redirect()->back()->with('status', 'Pembelian gagal! Stok barang tidak mencukupi');
+            return redirect('/katalog')->with('status', 'Pembelian gagal! Stok barang tidak mencukupi');
         }
 
         /* bypass authorization */
         $client = new Client();
 
-        $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTAzODQwOTEsInBhc3N3b3JkIjoicGFzc3dvcmQiLCJyb2xlIjoiYWRtaW4iLCJ1c2VybmFtZSI6ImFkbWluIn0.CMcrJ0mU4DCBNtuOiaJM0Ecrpe0KmQ14Mr0BZJhW6K4';
+        $secret_key = env('API_SECRET');
+        $token_lifespan = env('TOKEN_HOUR_LIFESPAN');
+        $token_claims = [
+            'username'  =>  'admin',
+            'password'  =>  'password',
+            'role'      =>  'admin',
+            'exp'       =>  Carbon::now()->addHour($token_lifespan)->timestamp,
+        ];
+
+        $token = JWT::encode($token_claims, $secret_key, 'HS256');
         $headers = [
             'Authorization' =>  $token,
         ];
         $url = env('SINGLE_SERVICE_API_URL') . "barang/" . $id;
 
-        if ($stok - $jumlah == 0) {
-            $response = $client->delete($url, ['headers' => $headers]);
-        }
-
-        if ($stok - $jumlah > 0) {
+        if ($stok - $jumlah >= 0) {
             $response = $client->put($url, [
                 'headers'   =>  $headers,
-                'form_params'      => [
+                'json'      => [
                     'nama'          =>  $nama,
                     'harga'         =>  $harga,
                     'stok'          =>  $stok - $jumlah,
@@ -97,6 +104,6 @@ class BeliController extends Controller
             'buyers_id'     =>  $id,
         ]);
 
-        return redirect()->back()->with('status', 'Pembelian berhasil!');
+        return redirect('/katalog')->with('status', 'Pembelian berhasil!');
     }
 }
