@@ -50,16 +50,28 @@ Digunakan pada setiap file yang memerlukan akses ke directory lain sehingga memu
 
 ## How to Run
 1. Clone repository ini
-2. Masuk ke directory 
-``` cd /Monolith-Fullstack ```
+
+2. Masuk ke directory
+``` 
+cd /Monolith-Fullstack 
+```
+
 3. Buat file .env dengan command berikut
 * Windows
-``` copy .env.example .env ```
+``` 
+copy .env.example .env
+```
 * Linux
-``` cp .env.example .env ```
+```
+cp .env.example .env
+```
+
 4. Jika menggunakan Docker Desktop, jalankan aplikasi tersebut terlebih dahulu
+
 5. Pada terminal/cmd, jalankan command makefile berikut.
-``` make setup ```
+```
+make setup 
+```
 
 <br>
 
@@ -97,44 +109,47 @@ Digunakan pada setiap file yang memerlukan akses ke directory lain sehingga memu
 ### B05 - Lighthouse
 1. Page Login
 
-![Login Page](res\login-page.jpg)
+![Login Page](res/login-page.jpg)
 
-Terlihat bahwa indikator performance sangat buruk. Hal ini karena website menggunakan [template bundle css](public\assets\css). Solusi yang dapat diberikan adalah menghapus beberapa kode yang tidak digunakan dari bundle tersebut, namun perlakuan tersebut membutuhkan waktu yang cukup lama (author tidak memiliki cukup waktu)
+Terlihat bahwa indikator performance sangat buruk. Hal ini karena website menggunakan [template bundle css](public/assets/css). Solusi yang dapat diberikan adalah menghapus beberapa kode yang tidak digunakan dari bundle tersebut, namun perlakuan tersebut membutuhkan waktu yang cukup lama (author tidak memiliki cukup waktu)
 
 2. Page Register
 
-![Register Page](res\register-page.jpg)
+![Register Page](res/register-page.jpg)
 
-Terlihat bahwa indikator performance sangat buruk. Hal ini karena website menggunakan [template bundle css](public\assets\css). Solusi yang dapat diberikan adalah menghapus beberapa kode yang tidak digunakan dari bundle tersebut, namun perlakuan tersebut membutuhkan waktu yang cukup lama (author tidak memiliki cukup waktu)
+Terlihat bahwa indikator performance sangat buruk. Hal ini karena website menggunakan [template bundle css](public/assets/css). Solusi yang dapat diberikan adalah menghapus beberapa kode yang tidak digunakan dari bundle tersebut, namun perlakuan tersebut membutuhkan waktu yang cukup lama (author tidak memiliki cukup waktu)
 
 3. Page Katalog Barang
 
-![Katalog Page](res\katalog-page.jpg)
+![Katalog Page](res/katalog-page.jpg)
 
 Memiliki skor rata-rata sebesar 94.5 (dibulatkan menjadi 95)
 
 4. Page Detail Barang
 
-![Detail Page](res\detail-page.jpg)
+![Detail Page](res/detail-page.jpg)
 
 Memiliki skor rata-rata sebesar 94.5 (dibulatkan menjadi 95)
 
 5. Page Beli Barang
 
-![Beli Page](res\beli-page.jpg)
+![Beli Page](res/beli-page.jpg)
 
 Memiliki skor rata-rata sebesar 94.5 (dibulatkan menjadi 95)
 
 6. Page Riwayat Pembelian
 
-![Riwayat Page](res\riwayat-page.jpg)
+![Riwayat Page](res/riwayat-page.jpg)
 
 Memiliki skor rata-rata sebesar 94.5 (dibulatkan menjadi 95)
 
 <br>
 
 ### B06 - Responsive Layout
-Luckily, tampilan website ini menggunakan Bootstrap langsung dari Laravel sehingga layout otomatis responsif. Hal ini dapat dilakukan dengan menggunakan command `php artisan ui:bootstrap`
+Luckily, tampilan website ini menggunakan Bootstrap langsung dari Laravel sehingga layout otomatis responsif. Hal ini dapat dilakukan dengan menggunakan command 
+```
+php artisan ui:bootstrap
+```
 
 <br>
 
