@@ -101,7 +101,7 @@ class BeliController extends Controller
             'item_name'     =>  $nama,
             'amount'        =>  $jumlah,
             'total_price'   =>  $total,
-            'buyers_id'     =>  $id,
+            'buyers_id'     =>  auth()->user()->id,
         ]);
 
         return redirect('/katalog')->with('status', 'Pembelian berhasil!');

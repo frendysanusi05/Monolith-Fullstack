@@ -6,25 +6,30 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+    <meta name="base-url" content="{{ url('/') }}">
+    <meta name="replace" content="1">
+    <meta name="author" content="18221041 Frendy Sanusi" />
+    <meta name="description" content="Aplication by 18221041 Frendy Sanusi" />
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <link rel="shortcut icon" href="{{ asset(config('base.logo.favicon')) }}" />
+    <link rel="shortcut icon" href="{{ asset(config('base.logo.favicon')) }}" async />
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="dns-prefetch" href="//fonts.bunny.net" async>
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet" async>
+
+    <!-- Datatables CSS CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" async>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
-    <!-- Datatables CSS CDN -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-
+    
     <!-- jQuery CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" aysnc></script>
 
     <!-- Datatables JS CDN -->
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" async></script>
 </head>
 <body>
     <div id="app">

@@ -39,4 +39,27 @@ class KatalogController extends Controller
                 ->make(true);
         }
     }
+
+    // public function pollItems(Request $request) {
+    //     $response = Http::get(env('SINGLE_SERVICE_API_URL') . "barang");
+    //     $responseData = $response->json();
+    //     $data = $responseData['data'];
+
+    //     $latestData = collect($data)->values()->all();
+
+    //     while (true) {
+    //         $response = Http::get(env('SINGLE_SERVICE_API_URL') . "barang");
+    //         $responseData = $response->json();
+    //         $data = $responseData['data'];
+    //         $currentData = collect($data)->values()->all();
+            
+    //         if ($currentData != $latestData) {
+    //             $latestData = $currentData;
+    //             return view('katalog-barang.index');
+    //         }
+
+    //         // Jeda polling setiap 1 detik
+    //         sleep(5);
+    //     }
+    // }
 }

@@ -40,6 +40,34 @@
                 }
             ]
         });
+
+        // Long-polling
+        // function pollItems() {
+        //     $.ajax({
+        //         url: '/poll-barang',
+        //         method: 'GET',
+        //         dataType: 'json',
+        //         success: function(response) {
+        //             console.log("HERE");
+        //             if (response.data.length > 0) {
+        //                 // Update the table with new data
+        //                 response.data.forEach(function(item) {
+        //                     dataTable.row.add([
+        //                         item.DT_RowIndex,
+        //                         item.nama,
+        //                         '<a href="/katalog-detail/' + item.id + '" class="edit btn btn-primary btn-sm">Detail</a>'
+        //                     ]).draw();
+        //                 });
+        //             }
+        //             pollItems();
+        //         },
+        //         error: function(error) {
+        //             window.location.href = '/katalog';
+        //         }
+        //     });
+        // }
+
+        // pollItems();
     });
 </script>
 @endsection

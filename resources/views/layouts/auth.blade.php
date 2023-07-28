@@ -18,11 +18,11 @@
 
         <link rel="shortcut icon" href="{{ asset(config('base.logo.favicon')) }}" />
         <link rel="stylesheet" href="{{ asset('assets/css/fonts/poppins/all.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/plugins.bundle.css') }}">
+        <!-- <link rel="stylesheet" href="{{ asset('assets/css/plugins.bundle.css') }}"> -->
         <link rel="stylesheet" href="{{ asset('assets/css/theme.bundle.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/theme.skins.bundle.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/base.bundle.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/modules.bundle.css') }}">
+        <!-- <link rel="stylesheet" href="{{ asset('assets/css/theme.skins.bundle.css') }}"> -->
+        <!-- <link rel="stylesheet" href="{{ asset('assets/css/base.bundle.css') }}"> -->
+        <!-- <link rel="stylesheet" href="{{ asset('assets/css/modules.bundle.css') }}"> -->
         <style>
             .patern-box {
                 width: 1030px;
@@ -72,10 +72,10 @@
 		</div>
 
 		<script src="{{ asset('assets/js/plugins.bundle.js') }}"></script>
-        {{-- <script src="{{ asset('assets/js/theme.config.js') }}"></script> --}}
+        <!-- {{-- <script src="{{ asset('assets/js/theme.config.js') }}"></script> --}} -->
         <script src="{{ asset('assets/js/theme.bundle.js') }}"></script>
-        <script src="{{ asset('assets/js/base.bundle.js') }}"></script>
-        <script src="{{ asset('assets/js/modules.bundle.js') }}"></script>
+        <!-- <script src="{{ asset('assets/js/base.bundle.js') }}"></script> -->
+        <!-- <script src="{{ asset('assets/js/modules.bundle.js') }}"></script> -->
 		@stack('scripts')
 	</body>
 	</html>

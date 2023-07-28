@@ -28,7 +28,8 @@ Auth::routes();
 Route::middleware('auth')
     ->group(
         function() {
-            Route::get('home', [HomeController::class, 'index'])->name('home');
+            // Route::get('home', [HomeController::class, 'index'])->name('home');
+            Route::redirect('home', 'katalog');
 
             Route::namespace('KatalogBarang')
                 ->group(
@@ -37,6 +38,7 @@ Route::middleware('auth')
                         Route::get('/katalog-detail/{id}', [KatalogController::class, 'detail'])->name('katalog.detail');
                         Route::get('/get-barang', [KatalogController::class, 'getBarang'])->name('katalog.getBarang');
                         Route::get('/get-detail-barang/{id}', [KatalogController::class, 'getDetailBarang'])->name('katalog.getDetailBarang');
+                        // Route::get('/poll-barang', [KatalogController::class, 'pollItems'])->name('katalog.poll');
                     }
                 );
 

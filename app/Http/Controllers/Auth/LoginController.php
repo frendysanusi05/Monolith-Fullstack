@@ -91,6 +91,6 @@ class LoginController extends Controller
             return response()->json(['error' => 'Could not create token'], 500);
         }
         
-        return redirect(route("home"))->withCookie("jwt_token", $token, auth('api')->factory()->getTTL() * 60, "/")->with("success", "User logged in successfully");
+        return redirect(route("katalog"))->withCookie("jwt_token", $token, auth('api')->factory()->getTTL() * 60, "/")->with("success", "User logged in successfully");
     }
 }
