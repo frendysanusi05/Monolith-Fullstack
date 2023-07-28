@@ -75,37 +75,32 @@ make setup
 
 <br>
 
-## API Endpoints
-### User Endpoints
-| No | HTTP Method  | Endpoints                  | Access    |
-| -- | ------------ | -------------------------- | --------- |
-| 1  | POST         | /login                     | All       |
-| 2  | POST         | /register                  | All       |
-
-### Katalog Barang Endpoints
-| No | HTTP Method  | Endpoints                  | Access    |
-| -- | ------------ | -------------------------- | --------- |
-| 1  | GET          | /katalog                   | User      |
-| 2  | GET          | /katalog-detail/:id        | User      |
-| 3  | GET          | /get-barang                | User      |
-| 4  | GET          | /get-detail-barang/:id     | User      |
-
-### Beli Barang Endpoints
-| No | HTTP Method  | Endpoints                  | Access    |
-| -- | ------------ | -------------------------- | --------- |
-| 1  | GET          | /beli/:id                  | User      |
-| 2  | GET          | /get-identitas-barang/:id  | User      |
-| 3  | GET          | /transaksi/:id/"jumlah     | User      |
-
-### Riwayat Transaksi Endpoints
-| No | HTTP Method  | Endpoints                  | Access    |
-| -- | ------------ | -------------------------- | --------- |
-| 1  | GET          | /riwayat                   | User      |
-| 2  | GET          | /get-riwayat/:id           | User      |
-
-<br>
-
 ## Bonuses
+### B01 - OWASP
+* Cryptographic Failure
+
+Serangan ini dilakukan apabila penyusup mampu memperoleh data sensitif dari hasil MITM (Man-In-The-Middle Attack). Misalkan penyusup memperoleh data user dan password, namun password masih dalam bentuk enkripsi.
+
+![Testing Result](res/cry-failure.jpg)
+
+Terlihat bahwa penyusup tidak berhasil melakukan login. Hal ini karena Laravel melakukan enkripsi password menggunakan bcrypt yang belum ditemukan metode dekripsinya.
+
+
+* Injection
+
+Metode injection yang digunakan adalah SQL injection, salah satu metode yang paling umum digunakan. Thanks to Laravel, Laravel menggunakan Eloquent ORM sehingga website tidak dapat diinjeksi.
+
+![Testing Result](res/sql-inj.jpg)
+![Testing Result](res/302.jpg)
+
+
+* Server-Side Request Forgery
+
+Thanks to Laravel, serangan ini telah di-handle oleh CSRF.
+
+![Testing Result](res/ssrf.jpg)
+
+
 ### B05 - Lighthouse
 1. Page Login
 
