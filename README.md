@@ -96,7 +96,7 @@ Metode injection yang digunakan adalah SQL injection, salah satu metode yang pal
 
 * Server-Side Request Forgery
 
-Thanks to Laravel, serangan ini telah di-handle oleh CSRF.
+Thanks to Laravel, serangan ini telah di-handle oleh CSRF. Ketika melakukan login, server akan meminta token yang hanya dimiliki oleh user tertentu dan tidak di-send melalui jaringan (hanya ada di lokal) sehingga hampir tidak mungkin untuk melakukan serangan ini (token tidak dapat di-bruteforce)
 
 ![Testing Result](res/ssrf.jpg)
 
